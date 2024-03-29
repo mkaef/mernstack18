@@ -21,7 +21,7 @@
 //   }, 3000);
 // }
 
-/*================================================================================*/ 
+/*===========================Responses==============================*/ 
 
 
 //Q1. JavaScript is a dynamic language with types and operators, it offers seven primitives types:

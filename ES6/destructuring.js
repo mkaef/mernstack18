@@ -60,6 +60,13 @@ let Student = {
 //let { Name = "Joe S", Session, Standard, Subject} = Student
 
 let { Name = "Joe S", Session, Standard, Subject : {Physics, Mathematics = 100, Language}} = Student
+//data from multiple sources with user object, product, card type, dollar amount etc. want to combine it
+//using just the info form each. Dot is tedious plus...initialize each time (let name, let ..., let ...)
+//destructing is easier and no init over and over
+//One object called Oerderdetails/paymentdetails etc and combine these values in there with nested values as well 
+//Array destructuring is most common,
+//dependancy injection uses destrycturing
+//Passing data - props get destructured
 
 console.log(Name)
 console.log(Session)

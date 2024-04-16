@@ -41,7 +41,7 @@ let arr = [3,5,7]; //{0:3, 1:5, 2:7, newKey : "Sierra"}
 console.log("For Of Loop") 
 let cars = ['BMW', 'Volvo', 'Mini']; 
 
-cars.newCar = "Toyota"
+//cars.newCar = "Toyota"
 //cars[5] = "Toyota"
 
 

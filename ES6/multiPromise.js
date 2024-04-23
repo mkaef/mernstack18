@@ -199,7 +199,7 @@ let clientSession = new Promise((resolve, reject) => {
             "promise date" : (new Date).toDateString()
         })
         else{
-            reject("Client Session faile")
+            reject("Client Session failed")
         }
     }, 5000);
 })

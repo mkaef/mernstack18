@@ -5,17 +5,10 @@ console.log("In srever js")
 const express = require('express') //express class constructor
 const app = express() //invoking the class to create express-app server
 
-const port = 9000;//
-
-const defaultRouter = require("./Routers/defaultRoute")
-const adminRouter = require("./Routers/adminRoute")
 
 //we can have one main and multiple other express apps at a place
 const adminApp = express(); // a new express app to handle requests mounted with admin in path
 
-
-//setting up the middleware static to handle all the static files we need to serve to client
-// serve static files like images css using static middleware 
 app.use('/static', express.static('public'))
 
 app.get('/', function (req, res) {
@@ -75,11 +68,9 @@ app.get('/getalert', function (req, res) {
 //    res.sendFile(__dirname+"/Public/index.html")  
 //})
 
-//path mounting to other express app
+//path mounting to other
 app.use("/admin", adminApp)
-adminApp.use(adminRouter)
 
-/*
 adminApp.get("/",(req, res)=>{
   res.send("Hello World from Admin App")
 })
@@ -87,9 +78,7 @@ adminApp.get("/",(req, res)=>{
 adminApp.get("/info",(req, res)=>{
   res.send("No information present at the moment!!!")
 })
-*/
-app.use("/",defaultRouter)
 
-app.listen(port)
+app.listen(3000)
 
-console.log("api lauched at - localhost:"+port)
+console.log("api lauched at - localhost:3000")

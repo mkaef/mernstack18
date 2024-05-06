@@ -16,6 +16,7 @@
 /* ===================Responses==================*/ 
 
 //Q1. Create a setup for Express Web Server
+
 //PS C:\Projects\SynergisticsTraining\MERNStack18\ES6> cd Assessment3
 //PS C:\Projects\SynergisticsTraining\MERNStack18\ES6\Assessment3> npm init 
 //PS C:\Projects\SynergisticsTraining\MERNStack18\ES6\Assessment3> npm i express --save
@@ -36,7 +37,7 @@ app.listen(3000, (error) =>{
 })
 // Testing the server:PS C:\Projects\SynergisticsTraining\MERNStack18\ES6\Assessment3> node server
 
-//Q2. Configure a route name - Student
+//Q2 & Q3. Configure a route name - Student
 app.get("/student", (req, res) =>{
     console.log(req.student)
     res.send("<h1>Route name created</h1>") //determine the content type automatically

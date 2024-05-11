@@ -15,7 +15,7 @@ config = {
       // webpack 5 comes with devServer which loads in development mode
       devServer: {
         port: 9191,
-        historyApiFallback : true //localhost:9090/user
+        historyApiFallback : true //localhost:9191/user
     },
      // Rules of how webpack will take our files, complie & bundle them for the browser 
      module: {
@@ -39,6 +39,6 @@ config = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })] //localhost:9090 - loads this html
+    plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })] //localhost:9191 - loads this html
 } 
 module.exports = config;   

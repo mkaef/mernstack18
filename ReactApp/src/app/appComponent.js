@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./test.css";
+import "./app.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 //import TestComponent from "./CommonComponent/test";
 import Home from "./Common/HomeComponent";

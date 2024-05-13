@@ -25,3 +25,12 @@
 
 //use diffing algorithm, to compare the new virtual dom with acutal dom, dfs
 //if change is there, just replace the node instead of re-rendering the html
+
+
+
+//rect - class components and componenet life cycle methods => Componenet
+
+//a.creation life cycle
+    //> constructor - initiatiaze
+//update life cycle
+//destruction life cycle

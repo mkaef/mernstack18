@@ -23,9 +23,10 @@ export default class ApplicationComponent extends Component {
       }
      }
 
-     updateName = (evt)=>{
+     //updateName = (evt)=>{
+     updateName = (value)=>{     
           
-          alert("Updating the name")
+          //alert("Updating the name!!")
 
          // let nameElem = document.getElementById("name_element")
           //nameElem.innerText = "Andrew"
@@ -36,25 +37,31 @@ export default class ApplicationComponent extends Component {
 
           //update state to create new virtual dom using setState - api
           this.setState({
-               name : "Cedric Ipenda"
+               //name : "Cedric Ipenda"
+               name : value
           })
 
-          evt.preventDefault()
+          //evt.preventDefault()
      }
 
     render(){
         //let name = "Eric Medoua!!!"
         return(
-          <Router className="topdiv">
-               <Header/>
+          <Router> 
+          <div className="topdiv">
+               <b>userName={this.state.name}</b>
+               <Header userName={this.state.name}/>
                <Routes> 
-                    <Route path="/" element={<Home  parentName={this.state.name}/>}/>
-                    <Route path="home" element={<Home  parentName={this.state.name}/>}/>
+                    <Route path="/" element={<Home  parentName={this.state.name} 
+                           updateNameInParent={this.updateName } footer={Footer}/>}/>
+                    <Route path="home" element={<Home  parentName={this.state.name} 
+                           updateNameInParent={this.updateName}/>}/>
                     <Route path="about" element={<About />}/>
                     <Route path="about/:id" element={<About />}/>
                     <Route path="*" element={<NotFound />}/>    
                </Routes>
                <Footer/>
+               </div>
             </Router>
         )
     }

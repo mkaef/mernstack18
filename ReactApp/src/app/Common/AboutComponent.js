@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 
 //a functional component using arrow function
@@ -6,11 +6,21 @@ let About = ()=>{
     let params = useParams(); 
     let param = params && params["id"] ? params["id"]: "No Params"; 
 
+    //this.state = {userName : "Jean Rapono"}
+    //this.setState({userName : "Medoua"})
+
+    //using functional hook - useState is replacement of setState and state
+    let [userName, setUserName] = useState("Jean rapono")
+    let [userAge, setUserAge] = useState(40)
+    // let [user, setUser] = useState({userName :"Jean Rapono", userAge : 39}) //in case to update the object
+
      //first hook that we are using in application
      let goToHome = useNavigate(); //helps to create route table on the fly and intercepted by BrowserRouter
 
      let onGoToHomeClick = (evt)=>{
-         goToHome("/home");
+         //goToHome("/home");
+
+         setUserName("Medoua!!")
          
          evt.preventDefault();//it stops the default behaviour like event propagation
      }
@@ -31,6 +41,8 @@ let About = ()=>{
                 <button className={"form-control btn btn-primary col-md-1"} 
                         onClick={onGoToHomeClick} 
                         >Go To Home</button>
+
+                        <h4>{userName}</h4>
         </div>
     )
 }

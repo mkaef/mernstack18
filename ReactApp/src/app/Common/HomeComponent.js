@@ -48,9 +48,9 @@ export default class Home extends Component {
     componentDidMount(){
         //we can access the html and make calls to server API here to pull the data
 
-        setTimeout(()=>{
-            this.address.current.value = "New name with reference"
-        },2000)  
+        //setTimeout(()=>{
+        //    this.address.current.value = "New name with reference"
+       // },2000)  
     }
 
     //destruction life cycle method
@@ -173,52 +173,70 @@ export default class Home extends Component {
 render (){
     console.log("render method called")
     return(
-        <div className="col-md-12">
-            <h1>Home Componenet</h1>
-            <h2>User Age is {this.state.age}</h2>
 
-            {/*controlled way of creating componenet direcrtly - state directly coupled with changes*/}
-            <div className="form col-mid-12">
-                <div className="form control">
-                    <div className="col-mid-3">
-                        <b>User Name</b>
-                        </div>
-                        <div className="col-mid-7"> 
-                            <input type="text" className="form-control textbox userName" value={this.state.userName}
-                                   placeholder="Plaese provide user name" onChange={this.onTextChange}></input>
-                   </div>
-
-                   <div className="col-mid-7"> 
-                            <input type="text" className="form-control textbox userAge" value={this.state.age}
-                                   placeholder="Plaese provide user age" onChange={this.onTextChange}></input>
-                   </div>
-
-                   <div className="col-md-3">
-                        <button className={"form-control btn btn-primary col-md-1"} 
-                            onClick={this.updateName} 
-                        >Update Name to Age</button>
-                        </div>
-                </div>
+        <div className={"loadimage form"} >
+                <h1>{this.state.title}</h1>
+                <b className="feature">{"Product Feature's :"}</b>
+                <ul>                     
+                    <li>Sign up new users</li>
+                    <li>Login existing users.</li>                
+                    <li>Allow user's to add to cart.</li>
+                    <li>Save the user's cart.</li>
+                    <li>Checkout and pay for items.</li>
+                    <li>Allow users to cancel the order.</li>
+                    <li>Allow users to reorder the cart.</li>
+                    <li>Add products/items to create product collection.</li>
+                    <li>Allow users to give ratings to each product.</li>
+                    <li>Have notifications on top right with logout.</li>
+                </ul>
             </div>
-            {this.props.footer}
-             {/* uncontrolled component using reference element */}
-              {/* <input type="text" ref={this.address} ></input> */}
 
-             <form className="form" action="/api/loginuser" method="post" onSubmit={this.formSubmit}>
-                    <b>Address</b>
-                     <input type="text" placeholder={"Default User Address"} 
-                         ref={this.address} maxLength={20} ></input>
-                    <b>Age</b>
-                     <input type="number" placeholder={"Default User Age"} 
-                         ref={this.age} maxLength={20}></input>
+       // <div className="col-md-12">
+       //     <h1>Home Componenet</h1>
+        //    <h2>User Age is {this.state.age}</h2>
 
-                     <button type="submit"> Save </button>
-             </form>
-             <label> {this.state.refAddress}</label>
+        //    {/*controlled way of creating componenet direcrtly - state directly coupled with changes*/}
+        //    <div className="form col-mid-12">
+        //        <div className="form control">
+        //           <div className="col-mid-3">
+         //               <b>User Name</b>
+         //               </div>
+         //               <div className="col-mid-7"> 
+         //                   <input type="text" className="form-control textbox userName" value={this.state.userName}
+         //                          placeholder="Plaese provide user name" onChange={this.onTextChange}></input>
+         //          </div>
 
-             <hr/>
-             <label> {this.state.refAge}</label>
-        </div>
+        //           <div className="col-mid-7"> 
+        //                    <input type="text" className="form-control textbox userAge" value={this.state.age}
+        //                           placeholder="Plaese provide user age" onChange={this.onTextChange}></input>
+        //           </div>
+
+        //           <div className="col-md-3">
+        //                <button className={"form-control btn btn-primary col-md-1"} 
+        //                   onClick={this.updateName} 
+        //                >Update Name to Age</button>
+        //                </div>
+        //        </div>
+        //    </div>
+        //    {this.props.footer}
+        //     {/* uncontrolled component using reference element */}
+        //      {/* <input type="text" ref={this.address} ></input> */}
+
+        // {/*    <form className="form" action="/api/loginuser" method="post" onSubmit={this.formSubmit}>
+        //            <b>Address</b>
+        //             <input type="text" placeholder={"Default User Address"} 
+        //                 ref={this.address} maxLength={20} ></input>
+        //           <b>Age</b>
+        //             <input type="number" placeholder={"Default User Age"} 
+        //                 ref={this.age} maxLength={20}></input>
+
+        //             <button type="submit"> Save </button>
+        //     </form>
+        //     <label> {this.state.refAddress}</label>
+
+        //     <hr/>
+        //     <label> {this.state.refAge}</label>
+    //</div>*/}
         
        )
     }
@@ -230,9 +248,9 @@ render (){
 //}
 
 //gives the warning if we set it to required
-Home.propTypes = {
-   parentName : PropTypes.string.isRequired
-}
+//Home.propTypes = {
+//   parentName : PropTypes.string.isRequired
+//}
 
 
 

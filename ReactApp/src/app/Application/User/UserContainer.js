@@ -1,7 +1,7 @@
 //create the connect method and add that to the component
 //react-redux
 import { connect } from "react-redux";
-import { AddUserToStore } from "../../../state/User/userAction";
+import { AddUserToStore, SaveUserToDB } from "../../../state/User/userAction";
 import UserComponent from "./UserComponent.jsx";
 
 // import AdminComponent from "./AdminComponent.jsx";
@@ -19,6 +19,9 @@ let mapDispatchToProps = (dispatch)=>{
     return {
         addUser : (user)=>{
             dispatch(AddUserToStore(user))
+        },
+        loginUser : (user)=>{
+            dispatch(SaveUserToDB(user))
         }
     }
 }

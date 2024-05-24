@@ -6,62 +6,77 @@ const express = require('express') //express class constructor
 const app = express() //invoking the class to create express-app server
 
 const port = 9000;//
-
+const cors = require("cors")
 const defaultRouter = require("./Routers/defaultRoute")
 const adminRouter = require("./Routers/adminRoute")
+const userRouter = require("./Routers/userRoute")
+
+global.rootDir = __dirname;
+
 
 //we can have one main and multiple other express apps at a place
 const adminApp = express(); // a new express app to handle requests mounted with admin in path
+const userApp = express();
+
+app.use(cors()) //enabling cross origin resource sharing at root level
+//setting up the middleware static to handle all the static files we need to serve to client
+// serve static files like images css using static middleware 
+app.use('/static', express.static('public')) //localhost:9000/static/alert.js
 
 
 //setting up the middleware static to handle all the static files we need to serve to client
 // serve static files like images css using static middleware 
 app.use('/static', express.static('public'))
 
-app.get('/', function (req, res) {
-  res.send('Hello World!!! From Andrew!!')
-})
+//json middle-ware for setting request content type to json in body
+app.use(express.json({limit:'2mb', extended:false})); 
+
+
+
+//app.get('/', function (req, res) {
+//  res.send('Hello World!!! From Andrew!!')
+//})
 
 //http://localhost:3000/data?name=jean&session=express
-app.get('/data', function (req, res) {
-    let queryString = req.query //req.query - is used to read the values present after ? in api path
+//app.get('/data', function (req, res) {
+//    let queryString = req.query //req.query - is used to read the values present after ? in api path
 
     //console.log(queryString)
     //console.log(res)
-    console.log(req)
-    if(queryString.session == "express"){
-       res.json({"name" : queryString.name})
-    }else{
-      res.json(queryString)
-    }
+    //console.log(req)
+    //if(queryString.session == "express"){
+    //   res.json({"name" : queryString.name})
+   // }else{
+    //  res.json(queryString)
+   // }
     
-})
+//})
 
 //http://localhost:3000/nameByID/2000
-app.get('/nameByID/:id', function (req, res) {
-  let queryParam = req.params["id"] //reads the parameter passed in path of API, we can have multiple query params
+//app.get('/nameByID/:id', function (req, res) {
+//  let queryParam = req.params["id"] //reads the parameter passed in path of API, we can have multiple query params
 
-  console.log(queryParam)
-  if(queryParam == "2000"){
-     res.send("<h1>User is present</h1>")
-  }else{
-    res.send("<h1>User is not present</h1>")
-  }
+//  console.log(queryParam)
+//  if(queryParam == "2000"){
+//     res.send("<h1>User is present</h1>")
+//  }else{
+//    res.send("<h1>User is not present</h1>")
+//  }
   
-})
+//})
 
-app.post('/adduser', function (req, res) {
+//app.post('/adduser', function (req, res) {
 
-  let data = req.body 
+//  let data = req.body 
 
-    res.json(data)
+//    res.json(data)
    
-})
+//})
 
-app.get('/getalert', function (req, res) {
-  res.sendFile(__dirname+"/Public/index.html")
+//app.get('/getalert', function (req, res) {
+//  res.sendFile(__dirname+"/Public/index.html")
    
-})
+//})
 
 // a hack to handle static files but a feasible approach
 //app.get('/alert_me.js', function (req, res) {
@@ -78,6 +93,11 @@ app.get('/getalert', function (req, res) {
 //path mounting to other express app
 app.use("/admin", adminApp)
 adminApp.use(adminRouter)
+
+//api path signinup => localhost:9000/user/api/signinup
+app.use("/user", userApp)
+userApp.use(userRouter)
+
 
 /*
 adminApp.get("/",(req, res)=>{

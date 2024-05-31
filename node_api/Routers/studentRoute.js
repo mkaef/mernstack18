@@ -38,11 +38,11 @@ studentRouter.post("/api/signinup",(req, res)=>{ //localhost:9000/user/api/signi
 //code to fetch all the users from user collection and return back 
 studentRouter.get("/api/students",(req, res)=>{
     StudentDataModel.find()
-    .then((allusers)=>{
-        res.send(allusers)
+    .then((allstudents)=>{
+        res.send(allstudents)
     })
     .catch(()=>{
-        res.send("error while fetching users")
+        res.send("error while fetching students")
     })
 })
   

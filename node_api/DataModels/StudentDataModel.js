@@ -6,7 +6,7 @@ mongooseObj.connect("mongodb://127.0.0.1/mernstack18");
 
 let studentSchema = new schemaObj({
     studentName : {type: String, required : true},
-    age: {type:String, required : true},
+    age:Number,
     address: String,
     mark: Number
 },

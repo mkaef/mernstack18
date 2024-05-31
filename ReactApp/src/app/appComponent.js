@@ -8,7 +8,9 @@ import Footer from "./Common/FooterComponenet";
 import Header from "./Common/HeaderComponent";
 import About from "./Common/AboutComponent";
 import NotFound from "./Common/NotFoundComponent";
+//import StudentComponent from "./Application/Student/StudentComponent";
 import UserComponent from "./Application/User/UserContainer";
+import StudentHook from "./Application/Student/StudentHookComponenet";
 import UserHook from "./Application/User/UserHookComponenet";
 
 
@@ -61,6 +63,7 @@ export default class ApplicationComponent extends Component {
                            updateNameInParent={this.updateName}/>}/>
                     {/*<Route path="user" element={<UserComponent />}/>*/}
                     <Route path="user" element={<UserHook />}/>
+                    <Route path="student" element={<StudentHook />}/>
                     <Route path="about" element={<About />}/>
                     <Route path="about/:id" element={<About />}/>
                     <Route path="*" element={<NotFound />}/>    

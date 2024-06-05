@@ -3,14 +3,6 @@ import axios from "axios";
 
 //product calls
 //Product Action and Server Call
-
-export const addProduct = (products)=>{
-    return {
-        type : actionTypes.ADD_PRODUCTS_TO_STORE,
-        payload : {products}
-    }
-}
-
 export const saveProduct = (product)=>{
     console.log("Product ", product);
 
@@ -32,7 +24,19 @@ export const saveProduct = (product)=>{
     }
 };
 
+export const addProduct = (products)=>{
+    return {
+        type : actionTypes.ADD_PRODUCTS_TO_STORE,
+        payload : {products}
+    }
+}
 
+// export const setLoading = (loading)=>{
+//     return {
+//         type : actionTypes.SET_LOADING,
+//         payload : {loading}
+//     }
+// }
 
 export const fetchProducts = ()=>{
     console.log("Product ");
@@ -48,6 +52,7 @@ export const fetchProducts = ()=>{
             dispatch(addProduct(productresp))
         })
         .catch((err)=>{
+            //dispatch(loading(false));
             console.log("Error While Saving Product", err)
         })
     }

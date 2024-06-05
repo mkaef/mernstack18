@@ -11,14 +11,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from "./User/userReducer";
 import studentReducer from "./Student/studentReducer";
 import productReducer from "./Product/productReducer";
-import CartReducer from "./Cart/cartReducer";
+import cartReducer from "./Cart/cartReducer";
 
 //We can add multiple reducers and combine them together to have one root reducer and add it to store
 let rootReducer = combineReducers({ 
     userReducer, //userReducer : userReducer
     studentReducer,
     productReducer,
-    CartReducer
+    cartReducer
 })
 
 

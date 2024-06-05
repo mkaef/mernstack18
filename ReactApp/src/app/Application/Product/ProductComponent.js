@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveProduct } from "../../../state/Product/productAction";
-
-import DisplayProducts from "./DisplayProducts";
+import { saveProduct } from "../../../state/Product/ProductAction";
+import DisplayProducts from "./DisplayProduct";
 
 let ProductComponent = (props) => {
 
@@ -11,7 +10,7 @@ let ProductComponent = (props) => {
     let desc = useRef(null)
     let rating = useRef(null)
 
-    let product = useSelector((state)=>state.productReducer.Product)
+    let product = useSelector((state)=>state.productReducer.Product) //product reducer
 
     let dispatchProduct = useDispatch();
 

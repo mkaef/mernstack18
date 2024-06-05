@@ -1,16 +1,26 @@
-let mongooseObj = require("mongoose"), //importing the mongoose module object
-schemaObj = mongooseObj.Schema; //using the schema class from mongoose
+const mongoose = require("mongoose");
 
-mongooseObj.connect("mongodb://127.0.0.1/mernstack18"); 
+const cartSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    products: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+        quantity: { type: Number, required: true, min: 1 },
+      },
+    ],
+  },
+  {
+    versionKey: false,
+  }
+);
 
-let CartSchema = new schemaObj({
-    userid: { type:String, required:true},
-    cart: Object
-},
-{
-    versionKey: false //false - set to false then it wont create in mongodb
-});
-
-let CartModel = mongooseObj.model("cart",CartSchema);
-module.exports = CartModel;
-//note: donot put versionkey to true or it will start throwing error
+module.exports = mongoose.model("Cart", cartSchema);

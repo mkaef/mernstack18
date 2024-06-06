@@ -16,7 +16,7 @@ export const UPDATE_ITEM = "CART.UPDATE_ITEM";
 export const EMPTY_CART = "CART.EMPTY_CART";
 
 
-export const LOAD_USER_CART = "LOAD_USER_CART";
-export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
-export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const ADD_TO_CART = "ADD_TO_CART";
+//export const LOAD_USER_CART = "LOAD_USER_CART";
+//export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
+//export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+//export const ADD_TO_CART = "ADD_TO_CART";

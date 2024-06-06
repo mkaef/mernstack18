@@ -1,57 +1,101 @@
-/*
-
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CartItemComponent from "./CartItemComponent";
 import CartSummary from "./CartSummary";
-import { AddToCart, FetchUserCart } from "../../../state/Cart/cartAction";
+import { saveCartToDb } from "../../../state/Cart/cartAction";
 
-const CartComponent = ()=>{
 
-   // Get product id from route params
-  const productId = useParams().productId;
+let CartComponent = (props) => {
 
-  // Get search params
-  const [searchParams] = useSearchParams();
+    let cartList = useSelector((state)=>state.cartReducer);
 
-  // Get quantity from search params
-  const quantity = searchParams.get("quantity");
+    let user = useSelector((state)=>state.userReducer.user)
 
-  // for dispatching actions
-  const dispatch = useDispatch();
-
-  // Get current user from store
-  const user = useSelector((store) => store.userReducer.user);
-
-  // Get current cart items from store
-  const cartItems = useSelector((store) => store.cartReducer.cart.items)
-
-  useEffect(() => {
-    // fetch user cart if it is not dummy
-    if (user && user._id && cartItems.length === 0) {
-      dispatch(FetchUserCart(user._id));
+    let recalculate = (cartItems)=>{
+        let amount = 0, 
+            count = 0;
+    
+        for(let item of cartItems) {
+            amount += item.qty * item.price;
+            count  += item.qty; 
+        }
+    
+        return {
+            amount, //ES6 syntactic sugar amount: amount 
+            count // if key and values are same name then we can put it this way without ":"
+        }
     }
 
-    // if adding product to cart
-    if(productId){
-      dispatch(AddToCart(productId, quantity));
-    }
-  }, [user]);
+    let dispatchToSaveCart = useDispatch()
 
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-9">
-          <CartItemComponent />
-        </div>
-        <div className="col-md-3">
-          <CartSummary />
-        </div>
-      </div>
-    </div>
-  );
-};
+    let clickToSaveCart = (cart, userId)=>{
+        if(!userId){
+            alert("Please sign in to save the cart!!!")
+        }else{
+            dispatchToSaveCart(saveCartToDb(cart, userId))
+        }
+    }
+
+    let navigate = useNavigate();
+    let func = (evt)=>{
+        navigate('/checkout');
+        evt.preventDefault();
+    }
+
+    return(
+        <div className="col-md-12">
+            <h1>Cart Component</h1>
+            {
+                cartList && cartList.length >= 1 ? 
+                <>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Rating</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                {
+                                    props.readOnly ?  "" : //bydefault false as boolean default is false
+                                        <>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                        </>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                cartList.map((item) => {
+                                    //return item.name
+                                    return <CartItemComponent item={item} readOnly={props.readOnly} key={item._id}/>
+                                })
+                            } 
+                        </tbody>
+                    </table>
+                    <CartSummary data={recalculate(cartList)} readOnly={props.readOnly} />
+
+                    {
+                        props.readOnly ? <></> : 
+                            <>
+                                <button onClick={() => clickToSaveCart(cartList, user._id)} >
+                                        Save Cart
+                                </button>
+                                
+                                <button onClick={func} >
+                                    Go To Checkout
+                                </button> 
+                            </> 
+                    }
+                </> 
+                : 
+                <h2>Please add product to cart</h2>
+            }
+        </div> 
+    )
+}
 
 export default CartComponent;
-*/

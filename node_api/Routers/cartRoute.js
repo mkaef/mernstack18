@@ -1,54 +1,50 @@
-const express = require("express");
-const cartRouter = express.Router();
-const Cart = require("../DataModels/CartDataModel");
+let express = require("express");
+let cartRouter = express.Router({}),
+CartDataModel = require("../DataModels/cartDataModel");
 
-// route for adding products to the cart
-cartRouter.post("/api/cart", async (req, res) => {
-  // Extract cart details from request body
-  const { userId, products } = req.body;
+//cart api's
+cartRouter.post("/api/saveUserCart",(req, res)=>{
 
-  try {
-    // Check if cart already exists for the user
-    const existingCart = await Cart.findOne({ userId });
+    CartDataModel.findOne({userid: req.body.userid})
+        .then((cartDbObj) => {        
+                if (!cartDbObj) { //checks for null cart of given user
+                        console.log("No cartitems Present, Adding / Inserting!"); 
+                        let cartObj = new CartDataModel(req.body);
 
-    // if exists, rewrite the cart
-    if (existingCart) {
-      existingCart.products = products;
-      await existingCart.save();
-      return res
-        .status(200)
-        .json({ cart: existingCart, message: "Updated cart successfully!" });
-    } else {
-      // Create a new cart
-      const cart = new Cart({ userId, products });
+                        cartObj.save().then((data)=>{                                  
+                            res.json(data);
+                        }).catch((err)=>{
+                            res.send("Error Occurred"+ err);
+                        });
+                }
+                else{ //update the cart for given user
+                    console.log("CartItems Present, Replacing / Updating!");
+                    cartDbObj.cart = req.body.cart;//replacing db cart with cart that user has sent from cartcomponent page
+                    
+                    cartDbObj.save()
+                    .then((data)=>{        
+                         setTimeout(()=>{
+                            res.json(data);
+                        },3000)                        
+                    })
+                    .catch((err)=>{
+                        res.send("Error Occurred"+ err);
+                    })
+                }
+  })
+  .catch((err)=>{
+        console.log("got an error!", err);            
+        res.send("error while fetching cart!");
+  });
 
-      // Save the cart to the database
-      await cart.save();
-
-      return res
-        .status(200)
-        .json({ cart, message: "Added products to cart successfully!" });
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Couldn't add products to cart" });
-  }
 });
 
-cartRouter.get("/api/cart/:userId", async (req, res) => {
-
-  // Extract userid from request body
-  const { userId } = req.params;
-  
-  try {
-    const cart = await Cart.findOne({ userId });
-    if (cart) {
-      return res.status(200).json({ cart });
-    } else {
-      return res.status(404).json({ error: "Cart not found" });
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Couldn't fetch cart" });
-  }
+cartRouter.post("/api/getUserCart",(req, res)=>{
+    CartDataModel.findOne({userid: req.body.userid})
+        .then((cart) => { res.json(cart) })
+        .catch((err)=>{res.send("Error Occurred"+ err);})
 });
 
 module.exports = cartRouter;
+
+//in future need to put this datamodel in user itself, so that we can have best use of mongodb

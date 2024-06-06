@@ -13,7 +13,7 @@ import UserComponent from "./Application/User/UserContainer";
 import StudentHook from "./Application/Student/StudentHookComponenet";
 import UserHook from "./Application/User/UserHookComponenet";
 import ProductComponent from "./Application/Product/productComponent";
-//import CartComponent from "./Application/Cart/CartComponenet";
+import CartComponent from "./Application/Cart/CartComponenet";
 
 
 
@@ -68,7 +68,7 @@ export default class ApplicationComponent extends Component {
                     <Route path="user" element={<UserHook />}/>
                     <Route path="student" element={<StudentHook />}/>
                     <Route path="product" element={<ProductComponent />}/>
-                    {/*<Route path="cart" element={<CartComponent />}/>*/}
+                    <Route path="cart" element={<CartComponent />}/>
                     <Route path="about" element={<About />}/>
                     <Route path="about/:id" element={<About />}/>
                     <Route path="*" element={<NotFound />}/>    

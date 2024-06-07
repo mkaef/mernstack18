@@ -12,6 +12,8 @@ let CartComponent = (props) => {
 
     let user = useSelector((state)=>state.userReducer.user)
 
+    let loading = useSelector((state)=>state.productReducer.Loading)
+
     let recalculate = (cartItems)=>{
         let amount = 0, 
             count = 0;
@@ -81,10 +83,11 @@ let CartComponent = (props) => {
                     {
                         props.readOnly ? <></> : 
                             <>
-                                <button onClick={() => clickToSaveCart(cartList, user._id)} >
-                                        Save Cart
-                                </button>
-                                
+                                {loading ?"" :
+                                    <button onClick={() => clickToSaveCart(cartList, user._id)} >
+                                            Save Cart
+                                    </button>
+                                }
                                 <button onClick={func} >
                                     Go To Checkout
                                 </button> 
@@ -92,7 +95,7 @@ let CartComponent = (props) => {
                     }
                 </> 
                 : 
-                <h2>Please add product to cart</h2>
+                <h4>Please add product to cart</h4>
             }
         </div> 
     )

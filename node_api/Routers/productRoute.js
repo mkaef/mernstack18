@@ -1,9 +1,9 @@
 let express = require("express");
-let productRouter = express.Router({}),
+let router = express.Router({}),
 ProductDataModel = require("../DataModels/ProductDataModel");
 
 //product api's
-productRouter.post('/api/saveproduct',(req, res)=>{
+router.post('/api/saveproduct',(req, res)=>{
     console.log("product data ", req.body);
 
     let productDataObject = new ProductDataModel(req.body); //this creates mongoose model to be used as to make queries
@@ -18,7 +18,7 @@ productRouter.post('/api/saveproduct',(req, res)=>{
         })
     })
 
-productRouter.get('/api/getproducts',(req, res)=>{
+router.get('/api/getproducts',(req, res)=>{
     //fetch all the products saved in product collection
     ProductDataModel.find()
     .then((products)=>{ //error first callback
@@ -31,4 +31,4 @@ productRouter.get('/api/getproducts',(req, res)=>{
 })
 
 
-module.exports = productRouter;
+module.exports = router;

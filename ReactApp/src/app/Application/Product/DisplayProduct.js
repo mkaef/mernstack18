@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../../../state/Product/ProductAction";
+import { fetchProducts } from "../../../state/Product/productAction";
 import ProductItemComponent from "./ProductItemComponent";
+
 
 let DisplayProducts = ()=>{
 

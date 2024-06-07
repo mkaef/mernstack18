@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveProduct } from "../../../state/Product/ProductAction";
+import { saveProduct } from "../../../state/Product/productAction";
 import DisplayProducts from "./DisplayProduct";
 
 let ProductComponent = (props) => {

@@ -1,9 +1,9 @@
 let express = require("express");
-let cartRouter = express.Router({}),
-CartDataModel = require("../DataModels/cartDataModel");
+let router = express.Router({}),
+CartDataModel = require("../DataModels/CartDataModel");
 
 //cart api's
-cartRouter.post("/api/saveUserCart",(req, res)=>{
+router.post("/api/saveUserCart",(req, res)=>{
 
     CartDataModel.findOne({userid: req.body.userid})
         .then((cartDbObj) => {        
@@ -25,7 +25,7 @@ cartRouter.post("/api/saveUserCart",(req, res)=>{
                     .then((data)=>{        
                          setTimeout(()=>{
                             res.json(data);
-                        },3000)                        
+                        },10000)                        
                     })
                     .catch((err)=>{
                         res.send("Error Occurred"+ err);
@@ -39,12 +39,12 @@ cartRouter.post("/api/saveUserCart",(req, res)=>{
 
 });
 
-cartRouter.post("/api/getUserCart",(req, res)=>{
+router.post("/api/getUserCart",(req, res)=>{
     CartDataModel.findOne({userid: req.body.userid})
         .then((cart) => { res.json(cart) })
         .catch((err)=>{res.send("Error Occurred"+ err);})
 });
 
-module.exports = cartRouter;
+module.exports = router;
 
 //in future need to put this datamodel in user itself, so that we can have best use of mongodb

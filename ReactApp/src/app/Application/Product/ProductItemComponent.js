@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch} from "react-redux";
-//import { addItemToCart } from "../../../State/Cart/cartAction";
+import { addItemToCart } from "../../../state/Cart/cartAction";
 
 let ProductItemComponent = ({product})=>{
 
@@ -9,7 +9,7 @@ let ProductItemComponent = ({product})=>{
     let dispatchToAddProduct = useDispatch();
 
     let addProductToCart = ( product )=>{
-        //dispatchToAddProduct(addItemToCart(product))
+        dispatchToAddProduct(addItemToCart(product))
     }
 
     return(
@@ -32,5 +32,3 @@ let ProductItemComponent = ({product})=>{
 }
 
 export default ProductItemComponent;
-
-

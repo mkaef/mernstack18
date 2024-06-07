@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartSummaryComponent = (props)=>{
+const CartSummary = (props)=>{
     let {
         count,
         amount
@@ -16,4 +16,4 @@ const CartSummaryComponent = (props)=>{
     )
 }
 
-export default CartSummaryComponent;
+export default CartSummary;

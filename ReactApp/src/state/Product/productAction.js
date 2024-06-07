@@ -31,12 +31,12 @@ export const addProduct = (products)=>{
     }
 }
 
-// export const setLoading = (loading)=>{
-//     return {
-//         type : actionTypes.SET_LOADING,
-//         payload : {loading}
-//     }
-// }
+export const setLoading = (loading)=>{
+    return {
+        type : "SET_LOADING",
+        payload : {loading}
+    }
+}
 
 export const fetchProducts = ()=>{
     console.log("Product ");

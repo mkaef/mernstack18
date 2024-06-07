@@ -21,8 +21,8 @@ let ProductReducer = (state = Initial_State, action)=>{
             //..state - products[] and defaultProduct
             return { ...state, Products : action.payload.products } //we update products and then retrun a new state
 
-        // case ActionTypes.SET_LOADING :
-        //     return { ...state, Loading : action.payload.loading } //we update products and then retrun a new state
+        case "SET_LOADING" :
+            return { ...state, Loading : action.payload.loading } //we update products and then retrun a new state
 
         default:
             return state

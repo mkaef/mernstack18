@@ -1,5 +1,5 @@
-
 import * as ActionTypes from "../actionTypes";
+import { setLoading } from "../Product/productAction";
 
 export const addItemToCart = (item)=>({
     type: ActionTypes.ADD_ITEM,
@@ -27,7 +27,7 @@ export const saveCartToDb = (cart, userid)=>{
 
     console.log("Items To Be Saved", cart); 
     return function(dispatch) {
-        //dispatch(loading(true));
+        dispatch(setLoading(true));
         window.fetch("http://localhost:9000/cart/api/saveUserCart",{
             method: 'POST',
             headers: {
@@ -38,10 +38,10 @@ export const saveCartToDb = (cart, userid)=>{
         .then (response => response.json())
         .then (usercartresponse => {
             console.log("response ", usercartresponse);
-            //dispatch(loading(false));
+            dispatch(setLoading(false));
         })
         .catch((err)=>{
-            //dispatch(loading(false));
+            dispatch(setLoading(false));
             console.log("Error While Saving Cart", err);
         }) 
     }

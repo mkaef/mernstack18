@@ -89,7 +89,9 @@ let CartComponent = (props) => {
                                     </button>
                                 }
                                 <button onClick={func} >
+                                
                                     Go To Checkout
+                                    
                                 </button> 
                             </> 
                     }
